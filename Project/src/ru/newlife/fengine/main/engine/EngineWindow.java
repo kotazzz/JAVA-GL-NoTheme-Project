@@ -4,6 +4,8 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 import org.lwjglx.BufferUtils;
 
@@ -50,16 +52,29 @@ public class EngineWindow {
 		GLFW.glfwSetWindowAspectRatio(this.id, this.width, this.height);
 		GLFW.glfwSetWindowPos(this.id, ((this.videoMode.width() - this.bufferWidth.get(0))/2), 
 				((this.videoMode.height() - this.bufferHeight.get(0))/2));
+		GLFW.glfwSetWindowSizeLimits(this.id, this.width, this.height, 1600, 900);
+		
+		GLFW.glfwMakeContextCurrent(this.id);
+		
+		GL.createCapabilities();
+		
+		GL11.glViewport(0,0,this.bufferWidth.get(0),this.bufferHeight.get(0));
+		
+		
 		
 	}
 	public void update() {
-		
+		GLFW.glfwPollEvents();
+		GLFW.glfwSwapBuffers(this.id);
 	}
 	
 	public void destroy() {
-		
+		GLFW.glfwDestroyWindow(this.id);
 	}
 
+	public boolean isCloseRequest() {
+		return GLFW.glfwWindowShouldClose(this.id);
+	}
 
 	public int getWidth() {
 		return width;
