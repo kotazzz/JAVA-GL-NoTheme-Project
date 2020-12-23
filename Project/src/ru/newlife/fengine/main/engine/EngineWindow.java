@@ -2,12 +2,12 @@ package ru.newlife.fengine.main.engine;
 
 import java.nio.IntBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
-import org.lwjglx.BufferUtils;
 
 public class EngineWindow {
 
