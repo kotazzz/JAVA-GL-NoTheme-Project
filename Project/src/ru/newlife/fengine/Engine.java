@@ -10,6 +10,7 @@ import ru.newlife.fengine.input.Keyboard;
 import ru.newlife.fengine.input.Mouse;
 
 import static org.lwjgl.opengl.GL46C.*;
+import static ru.newlife.fengine.util.MemoryManagment.*;
 
 public class Engine {
 	
@@ -49,27 +50,24 @@ public class Engine {
 		int[] indices = {0,1,2, 0,2,3};
 		
 
-		int vaoId = glGenVertexArrays();
-		glBindVertexArray(vaoId);
+		int vertexArray = glCreateVertexArrays();
+		glBindVertexArray(vertexArray);
 
-		int iboId = glGenBuffers();
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
-		IntBuffer intBuffer = this.storeDataInIntBuffer(indices);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, intBuffer, GL_STATIC_DRAW);
-		MemoryUtil.memFree(intBuffer);
+		int indexBuffer = glCreateBuffers();
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, putData(indices), GL_STATIC_DRAW);
 		
-		int vboId = glGenBuffers();
-		glBindBuffer(GL_ARRAY_BUFFER, vboId);
-		
-		FloatBuffer fBuffer = this.storeDataInFloatBuffer(v_quad);
-		glBufferData(GL_ARRAY_BUFFER, fBuffer, GL_STATIC_DRAW);
-		MemoryUtil.memFree(fBuffer);
+		int vertexBuffer = glCreateBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+		glBufferData(GL_ARRAY_BUFFER, putData(v_quad), GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
 		
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
 		
 		
-		glBindBuffer(GL_ARRAY_BUFFER, vboId);
-		glBindVertexArray(vaoId);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+		glBindVertexArray(vertexArray);
 	
 		while(!this.engineWindow.isCloseRequest())
 		{
@@ -79,15 +77,13 @@ public class Engine {
 			glClearColor(0, 0.8f, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			
-			glBindVertexArray(vaoId);
+			glBindVertexArray(vertexArray);
 			
-			glEnableVertexAttribArray(0);
 
 			//GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, v_quad.length / 3);
 			glDrawElements(GL_TRIANGLES, indices.length, GL_UNSIGNED_INT, 0);
 
-			glDisableVertexAttribArray(0);
-			glBindVertexArray(vaoId);
+			glBindVertexArray(vertexArray);
 
 			this.engineWindow.update();
 		}
