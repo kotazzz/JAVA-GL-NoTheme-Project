@@ -1,10 +1,12 @@
-package ru.newlife.fengine.main.engine;
+package ru.newlife.fengine.engine;
 
 public class Engine {
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 360;
 	public static final String TITLE = "NewLife`s Engine ";
-	private EngineWindow engineWindow;
+	
+	public EngineWindow engineWindow;
+	
 	public  void run() {
 		this.init();
 	}
@@ -17,7 +19,7 @@ public class Engine {
 	
 	public  void update() {
 		while (!this.engineWindow.isCloseRequest()) {
-			//TODO: Make rendering
+			this.engineWindow.update();
 		}
 		
 		this.engineWindow.destroy();
