@@ -9,6 +9,8 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 
+import ru.newlife.fengine.engine.input.Mouse;
+
 public class EngineWindow {
 	
 	private int width;
@@ -68,6 +70,8 @@ public class EngineWindow {
 		GLFW.glfwMakeContextCurrent(this.id);
 		GL.createCapabilities();
 		GL11.glViewport(0, 0, this.bufferedWidth.get(), this.bufferedHeight.get());
+		
+		Mouse.setMouseCallbacks(this.id);
 	}
 	
 	
