@@ -1,10 +1,10 @@
-package ru.newlife.fengine.engine.input;
+package ru.newlife.fengine.input;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCursorEnterCallbackI;
 import org.lwjgl.glfw.GLFWCursorPosCallbackI;
 
-import ru.newlife.fengine.engine.EngineWindow;
+import ru.newlife.fengine.EngineWindow;
 
 public class Mouse {
 	private static boolean[] buttons = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];

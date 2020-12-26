@@ -1,4 +1,4 @@
-package ru.newlife.fengine.engine;
+package ru.newlife.fengine;
 
 import java.nio.IntBuffer;
 
@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 
-import ru.newlife.fengine.engine.input.Mouse;
+import ru.newlife.fengine.input.Mouse;
 
 public class EngineWindow {
 	

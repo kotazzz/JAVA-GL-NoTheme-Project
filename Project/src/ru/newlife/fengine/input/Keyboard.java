@@ -1,8 +1,8 @@
-package ru.newlife.fengine.engine.input;
+package ru.newlife.fengine.input;
 
 import org.lwjgl.glfw.GLFW;
 
-import ru.newlife.fengine.engine.EngineWindow;
+import ru.newlife.fengine.EngineWindow;
 
 public class Keyboard {
 	
