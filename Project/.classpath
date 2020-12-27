@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="res"/>
 	<classpathentry exported="true" kind="lib" path="D:/Documents/JavaLib/lwjgl3/natives/lwjgl-assimp-natives-windows.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Documents/JavaLib/lwjgl3/natives/lwjgl-bgfx-natives-windows.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Documents/JavaLib/lwjgl3/natives/lwjgl-glfw-natives-windows.jar"/>
