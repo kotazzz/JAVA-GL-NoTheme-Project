@@ -1,6 +1,7 @@
 package ru.newlife.fengine.renderer;
 
 import static org.lwjgl.opengl.GL46C.*;
+import static com.kenny.engine.util.MemoryManagment.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.joml.Matrix2f;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
 
 public class Shader 
 {
@@ -135,5 +143,60 @@ public class Shader
 	public void unBind()
 	{
 		glUseProgram(0);
+	}
+	
+	public void setUniform1f(String name, float v)
+	{
+		glUniform1f(glGetUniformLocation(this.programId, name), v);
+	}
+	
+	public void setUniform2f(String name, Vector2f v)
+	{
+		glUniform2f(glGetUniformLocation(this.programId, name), v.x, v.y);
+	}
+	
+	public void setUniform2f(String name, float v1, float v2)
+	{
+		glUniform2f(glGetUniformLocation(this.programId, name), v1, v2);
+	}
+	
+	public void setUniform3f(String name, Vector3f v)
+	{
+		glUniform3f(glGetUniformLocation(this.programId, name), v.x, v.y, v.z);
+	}
+	
+	public void setUniform2f(String name, float v1, float v2, float v3)
+	{
+		glUniform3f(glGetUniformLocation(this.programId, name), v1, v2, v3);
+	}
+	
+	public void setUniform4f(String name, Vector4f v)
+	{
+		glUniform4f(glGetUniformLocation(this.programId, name), v.x, v.y, v.z, v.w);
+	}
+	
+	public void setUniform4f(String name, float v1, float v2, float v3, float v4)
+	{
+		glUniform4f(glGetUniformLocation(this.programId, name), v1, v2, v3, v4);
+	}
+	
+	public void setUniformMat2f(String name, Matrix2f mat)
+	{
+		glUniformMatrix2fv(glGetUniformLocation(this.programId, name), false, putData(mat));
+	}
+	
+	public void setUniformMat3f(String name, Matrix3f mat)
+	{
+		glUniformMatrix2fv(glGetUniformLocation(this.programId, name), false, putData(mat));
+	}
+	
+	public void setUniformMat4f(String name, Matrix4f mat)
+	{
+		glUniformMatrix2fv(glGetUniformLocation(this.programId, name), false, putData(mat));
+	}
+	
+	public void setUniformBool(String name, boolean v)
+	{
+		glUniform1i(glGetUniformLocation(this.programId, name), v == true ? 1 : 0);
 	}
 }
